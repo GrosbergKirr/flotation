@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 
 
 class MainTableParam(QtWidgets.QWidget):
-    def __init__(self, buttons_texts, buttons_names, pos, tableNum, parent=None):
+    def __init__(self, buttons_names, buttons_texts, pos, tableNum, parent=None):
         super().__init__(parent)
         self.buttons_texts = buttons_texts
         self.buttons_names = buttons_names
