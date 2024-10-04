@@ -1,0 +1,7 @@
+PyQt5
+pandas
+numpy
+scipy
+plotly
+PyQtWebEngine
+openpyxl
