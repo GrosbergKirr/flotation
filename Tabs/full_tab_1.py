@@ -1,6 +1,6 @@
-from tab_1.side_pictures import *
-from tab_1.side_tables import *
-from tab_1.tables import MainTableParam
+from pictures_widgets.side_pictures import *
+from tables_wigets.side_tables import *
+from tables_wigets.tables import *
 
 
 class Tab1:
@@ -12,7 +12,7 @@ class Tab1:
 
         self.mainTableCreate()
         self.sideTableCreate()
-        self.picturesCreate()
+        # self.picturesCreate()
 
     def mainTableCreate(self):
         # TODO: Переделать со списка на мапу

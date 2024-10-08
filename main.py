@@ -1,10 +1,11 @@
 import sys
 
-from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtGui import QPalette
 
-from tab_1.full_tab import *
-from tab_1.tables import *
-from tab_1.side_tables import *
+from Tabs.full_tab_1 import *
+from Tabs.full_tab_2 import *
+from tables_wigets.tables import *
+from tables_wigets.side_tables import *
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -31,6 +32,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.tab2 = QWidget()
         self.tabs.addTab(self.tab2, "Вкладка 2")
+        Tab2(self.screen_width, self.screen_height, self.tab2)
 
         self.tab3 = QWidget()
         self.tabs.addTab(self.tab3, "Вкладка 3")
