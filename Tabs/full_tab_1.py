@@ -1,6 +1,8 @@
-from pictures_widgets.side_pictures import *
-from tables_wigets.side_tables import *
-from tables_wigets.tables import *
+from flotation.connection_maker import Arrow
+from flotation.pictures_widgets.side_pictures import *
+from flotation.tables_wigets.side_tables import *
+from flotation.tables_wigets.tables import *
+
 
 
 class Tab1:
@@ -9,26 +11,29 @@ class Tab1:
         self.screen_width = width
         self.screen_height = height
 
-
+        self.picturesCreate()
+        self.connectionCreate()
         self.mainTableCreate()
         self.sideTableCreate()
-        # self.picturesCreate()
+        self.miniTableCreate()
+
+
 
     def mainTableCreate(self):
         # TODO: Переделать со списка на мапу
         '''Создаем основные таблицы!!'''
         self.mainTables = []
         # Размеры основных таблиц
-        mainTablesSize = (0.13, 0.11)
+        mainTablesSize = (0.11, 0.09)
         # Относительные (относительно экрана) координаты основных таблиц
         tablesCoordinates = ((0.01, 0.3),
-                             (0.22, 0.1),
-                             (0.38, 0.1),
-                             (0.54, 0.1),
-                             (0.38, 0.3),
-                             (0.38, 0.5),
-                             (0.38, 0.70),
-                             (0.22, 0.70),
+                             (0.20, 0.1),
+                             (0.36, 0.1),
+                             (0.52, 0.1),
+                             (0.36, 0.3),
+                             (0.36, 0.5),
+                             (0.36, 0.70),
+                             (0.20, 0.70),
                              (0.85, 0.1),
                              )
         # j + 1 чтобы таблицы нумеровались с единицы
@@ -47,14 +52,14 @@ class Tab1:
         '''Создаем побочные таблицы'''
         self.sideTables = []
         # Размеры основных таблиц
-        sideTablesSize = (0.07, 0.14)
+        sideTablesSize = (0.05, 0.12)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.57, 0.28),
-                                 (0.57, 0.45),
-                                 (0.57, 0.62),
-                                 (0.77, 0.28),
-                                 (0.77, 0.45),
-                                 (0.77, 0.62),
+        sideTablesCoordinates = ((0.60, 0.30),
+                                 (0.60, 0.47),
+                                 (0.60, 0.64),
+                                 (0.77, 0.30),
+                                 (0.77, 0.47),
+                                 (0.77, 0.64),
                                  )
 
         # j + 1 чтобы таблицы нумеровались с единицы
@@ -72,16 +77,16 @@ class Tab1:
         '''Создаем побочные таблицы'''
         self.sideTables = []
         # Размеры основных таблиц
-        sideTablesSize = (0.07, 0.14)
+        sideTablesSize = (0.05, 0.12)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.65, 0.28),
-                                 (0.65, 0.45),
-                                 (0.65, 0.62),
-                                 (0.85, 0.28),
-                                 (0.85, 0.45),
-                                 (0.85, 0.62),
+        sideTablesCoordinates = ((0.67, 0.30),
+                                 (0.67, 0.47),
+                                 (0.67, 0.64),
+                                 (0.84, 0.30),
+                                 (0.84, 0.47),
+                                 (0.84, 0.64),
                                  )
-
+        numOfRows = 5
         # j + 1 чтобы таблицы нумеровались с единицы
         for j, i in enumerate(sideTablesCoordinates):
             sideButtonsNames = (f"sbt{j + 1}_1", f"sbt{j + 1}_2", f"sbt{j + 1}_3", f"sbt{j + 1}_4",
@@ -90,46 +95,92 @@ class Tab1:
                                 f"sbt{j + 1}_5", f"sbt{j + 1}_6", f"sbt{j + 1}_7", f"sbt{j + 1}_8", f"sbt{j + 1}_9")
             pos0 = (int(i[0] * self.screen_width), int(i[1] * self.screen_height),
                     int(sideTablesSize[0] * self.screen_width), int(sideTablesSize[1] * self.screen_height))
-            self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, self.tab1)
+            self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, numOfRows, self.tab1)
+            self.table.setObjectName(f"sideTable{j + 1}")
+            self.sideTables.append(self.table)
+
+
+    def miniTableCreate(self):
+        '''Создаем побочные таблицы'''
+        self.sideTables = []
+        # Размеры основных таблиц
+        sideTablesSize = (0.05, 0.072)
+        # Относительные (относительно экрана) координаты побочных таблиц
+        sideTablesCoordinates = ((0.68, 0.12),
+                                 (0.75, 0.12),
+                                 (0.29, 0.32),
+                                 (0.50, 0.37),
+                                 )
+        numOfRows = 3
+        # j + 1 чтобы таблицы нумеровались с единицы
+        for j, i in enumerate(sideTablesCoordinates):
+            sideButtonsNames = (f"mbt{j + 1}_1", f"mbt{j + 1}_2", f"mbt{j + 1}_3", f"mbt{j + 1}_4",
+                                f"mbt{j + 1}_5", f"mbt{j + 1}_6", f"mbt{j + 1}_7", f"mbt{j + 1}_8", f"mbt{j + 1}_9")
+            sideButtonsTexts = (f"mbt{j + 1}_1", f"mbt{j + 1}_2", f"mbt{j + 1}_3", f"mbt{j + 1}_4",
+                                f"mbt{j + 1}_5", f"mbt{j + 1}_6", f"mbt{j + 1}_7", f"mbt{j + 1}_8", f"mbt{j + 1}_9")
+            pos0 = (int(i[0] * self.screen_width), int(i[1] * self.screen_height),
+                    int(sideTablesSize[0] * self.screen_width), int(sideTablesSize[1] * self.screen_height))
+            self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, numOfRows,  self.tab1)
             self.table.setObjectName(f"sideTable{j + 1}")
             self.sideTables.append(self.table)
 
     def picturesCreate(self):
-        picPath1 = r"C:\Users\grosy\OneDrive\Pictures\power.png"
-        sidePicturesCoordinates1 = (0.07, 0.12)
-        #относительные раземры кратинки
-        mainPicturesSize1 = (0.055, 0.075)
-        pos = (int(sidePicturesCoordinates1[0] * self.screen_width),
-               int(sidePicturesCoordinates1[1] * self.screen_height),
-               int(mainPicturesSize1[0] * self.screen_width),
-               int(mainPicturesSize1[1] * self.screen_height),
-               )
-        picSize = (int(mainPicturesSize1[0] * self.screen_width),
-                   int(mainPicturesSize1[1] * self.screen_height))
-        self.pic = Pic(pos, picPath1, picSize, self.tab1)
+        picPath1 = r"data/pic1.png"
+        PicturesCoordinates1 = (0.63, 0.20)
+        PicturesSize1 = (0.05, 0.07)
+        self.pic1 = Pic(picPath1, PicturesCoordinates1, PicturesSize1,
+                       self.screen_width, self.screen_height, self.tab1)
 
-        picPath2 = r"C:\Users\grosy\OneDrive\Pictures\power2.png"
-        sidePicturesCoordinates2 = (0.25, 0.47)
-        # относительные раземры кратинки
-        mainPicturesSize2 = (0.1, 0.13)
-        pos = (int(sidePicturesCoordinates2[0] * self.screen_width),
-               int(sidePicturesCoordinates2[1] * self.screen_height),
-               int(mainPicturesSize2[0] * self.screen_width),
-               int(mainPicturesSize2[1] * self.screen_height),
-               )
-        picSize = (int(mainPicturesSize2[0] * self.screen_width),
-                   int(mainPicturesSize2[1] * self.screen_height))
-        self.pic = Pic(pos, picPath2, picSize, self.tab1)
+        PicturesCoordinates1_1 = (0.80, 0.20)
+        PicturesSize1_1 = (0.05, 0.07)
+        self.pic1_1 = Pic(picPath1, PicturesCoordinates1_1, PicturesSize1_1,
+                       self.screen_width, self.screen_height, self.tab1)
 
-        picPath3 = r"C:\Users\grosy\OneDrive\Pictures\pic1.png"
-        sidePicturesCoordinates3 = (0.4, 0.47)
-        # относительные раземры кратинки
-        mainPicturesSize3 = (0.1, 0.13)
-        pos = (int(sidePicturesCoordinates3[0] * self.screen_width),
-               int(sidePicturesCoordinates3[1] * self.screen_height),
-               int(mainPicturesSize3[0] * self.screen_width),
-               int(mainPicturesSize3[1] * self.screen_height),
-               )
-        picSize = (int(mainPicturesSize3[0] * self.screen_width),
-                   int(mainPicturesSize3[1] * self.screen_height))
-        self.pic = Pic(pos, picPath3, picSize, self.tab1)
+        picPath2 = r"data/pic2.png"
+        PicturesCoordinates2 = (0.72, 0.21)
+        PicturesSize2 = (0.04, 0.06)
+        self.pic2 = Pic(picPath2, PicturesCoordinates2, PicturesSize2,
+                       self.screen_width, self.screen_height, self.tab1)
+
+        picPath3 = r"data/pic3.png"
+        PicturesCoordinates3 = (0.5, 0.5)
+        PicturesSize3 = (0.045, 0.067)
+        self.pic3 = Pic(picPath3, PicturesCoordinates3, PicturesSize3,
+                       self.screen_width, self.screen_height, self.tab1)
+
+        picPath4 = r"data/pic4.png"
+        PicturesCoordinates4 = (0.515, 0.72)
+        PicturesSize4 = (0.045, 0.067)
+        self.pic4 = Pic(picPath4, PicturesCoordinates4, PicturesSize4,
+                       self.screen_width, self.screen_height, self.tab1)
+
+        picPath5 = r"data/pic5.png"
+        PicturesCoordinates5 = (0.485, 0.75)
+        PicturesSize5 = (0.02, 0.03)
+        self.pic5 = Pic(picPath5, PicturesCoordinates5, PicturesSize5,
+                       self.screen_width, self.screen_height, self.tab1)
+
+        PicturesCoordinates5_1 = (0.479, 0.76)
+        PicturesSize5_1 = (0.02, 0.03)
+        self.pic5_1 = Pic(picPath5, PicturesCoordinates5_1, PicturesSize5_1,
+                        self.screen_width, self.screen_height, self.tab1)
+
+        picPath6 = r"data/pic6.png"
+        PicturesCoordinates6 = (0.06, 0.18)
+        PicturesSize6 = (0.05, 0.08)
+        self.pic6 = Pic(picPath6, PicturesCoordinates6, PicturesSize6,
+                        self.screen_width, self.screen_height, self.tab1)
+
+        picPath7 = r"data/pic7.png"
+        PicturesCoordinates7 = (0.27, 0.50)
+        PicturesSize7 = (0.08, 0.11)
+        self.pic7 = Pic(picPath7, PicturesCoordinates7, PicturesSize7,
+                        self.screen_width, self.screen_height, self.tab1)
+
+
+    def connectionCreate(self):
+        self.arrows = []
+        arrow = Arrow(QtCore.QPoint(120, 200), QtCore.QPoint(300, 375), QtCore.Qt.gray, self.tab1)
+        arrow.set_bend_points([QtCore.QPoint(200, 200), QtCore.QPoint(325, 200)])
+        arrow.setGeometry(0, 0, self.screen_width, self.screen_height)  # Задаем размеры виджета
+

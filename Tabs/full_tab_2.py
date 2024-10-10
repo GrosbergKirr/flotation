@@ -1,6 +1,8 @@
-from pictures_widgets.side_pictures import Pic
-from tables_wigets.side_tables import *
-from tables_wigets.tables import *
+from flotation.pictures_widgets.side_pictures import Pic
+from flotation.tables_wigets.side_tables import *
+from flotation.tables_wigets.tables import *
+
+from flotation.tables_wigets.side_tables import SideTableParam1
 
 
 class Tab2:
@@ -11,7 +13,7 @@ class Tab2:
 
 
         self.mainTableCreate()
-        # self.sideTableCreate()
+        self.sideTableCreate()
         # self.picturesCreate()
 
     def mainTableCreate(self):
@@ -49,12 +51,12 @@ class Tab2:
         # Размеры основных таблиц
         sideTablesSize = (0.07, 0.14)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.57, 0.28),
-                                 (0.57, 0.45),
-                                 (0.57, 0.62),
-                                 (0.77, 0.28),
-                                 (0.77, 0.45),
-                                 (0.77, 0.62),
+        sideTablesCoordinates = ((0.32, 0.31),
+                                 (0.32, 0.48),
+                                 (0.32, 0.65),
+                                 (0.52, 0.31),
+                                 (0.52, 0.48),
+                                 (0.52, 0.65),
                                  )
 
         # j + 1 чтобы таблицы нумеровались с единицы
@@ -74,14 +76,14 @@ class Tab2:
         # Размеры основных таблиц
         sideTablesSize = (0.07, 0.14)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.65, 0.28),
-                                 (0.65, 0.45),
-                                 (0.65, 0.62),
-                                 (0.85, 0.28),
-                                 (0.85, 0.45),
-                                 (0.85, 0.62),
+        sideTablesCoordinates = ((0.40, 0.31),
+                                 (0.40, 0.48),
+                                 (0.40, 0.65),
+                                 (0.60, 0.31),
+                                 (0.60, 0.48),
+                                 (0.60, 0.65),
                                  )
-
+        numOfRows = 5
         # j + 1 чтобы таблицы нумеровались с единицы
         for j, i in enumerate(sideTablesCoordinates):
             sideButtonsNames = (f"sbt{j + 1}_1", f"sbt{j + 1}_2", f"sbt{j + 1}_3", f"sbt{j + 1}_4",
@@ -90,7 +92,7 @@ class Tab2:
                                 f"sbt{j + 1}_5", f"sbt{j + 1}_6", f"sbt{j + 1}_7", f"sbt{j + 1}_8", f"sbt{j + 1}_9")
             pos0 = (int(i[0] * self.screen_width), int(i[1] * self.screen_height),
                     int(sideTablesSize[0] * self.screen_width), int(sideTablesSize[1] * self.screen_height))
-            self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, self.tab1)
+            self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, numOfRows, self.tab1)
             self.table.setObjectName(f"sideTable{j + 1}")
             self.sideTables.append(self.table)
 

@@ -1,5 +1,4 @@
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import *
 
 
 class MainTableParam(QtWidgets.QWidget):
@@ -15,13 +14,27 @@ class MainTableParam(QtWidgets.QWidget):
         # Создаем виджет
         self.setGeometry(QtCore.QRect(*self.pos))
         # self.setObjectName(f"gridLayoutWidget_2")
-
         # Создаем лэйаут
+
         self.table = QtWidgets.QGridLayout(self)
         self.table.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
         self.table.setContentsMargins(0, 0, 0, 0)
         self.table.setSpacing(0)
         self.table.setObjectName(f"table1_{self.tableNum}")
+
+        self.setStyleSheet("""
+                QToolButton {
+                    color: rgb(134, 013, 200);
+                    border: 1px solid black;
+                    padding: 5px;
+                    background-color: white;
+                }
+                QLabel {
+                    border: 1px solid black;
+                    padding: 5px;
+                }
+            """)
+
 
         # Добавляем кнопки и лейблы в лэйаут
         # TODO: переделать на мапу
@@ -31,8 +44,10 @@ class MainTableParam(QtWidgets.QWidget):
             button.setObjectName(self.buttons_names[j])
             button.setText(self.buttons_texts[j])
             button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            button.clicked.connect(self.clk)
             self.table.addWidget(button, j // 3 + 1, j % 3 + 1)
             self.buttons.append(button)
+
 
         # Добавляем лейблы
         verticalIndex = ["Выход", "P2O5\nпрогноз", "P2O5"]
@@ -51,3 +66,6 @@ class MainTableParam(QtWidgets.QWidget):
             self.table.addWidget(label, 0, i + 1, 1, 1)
 
         QtCore.QMetaObject.connectSlotsByName(self)
+
+    def clk(self):
+        print("clicked")
