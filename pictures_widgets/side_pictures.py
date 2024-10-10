@@ -4,9 +4,17 @@ from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QSpacerItem, QSizePolicy, 
 
 
 class Pic(QtWidgets.QWidget):
-    def __init__(self, pos, path, size,  parent=None):
+    def __init__(self, path, PicturesCoordinates, PicturesSize, screen_width, screen_height, parent=None):
         super().__init__(parent)
-        self.pos = pos
+        self.screen_width = screen_width
+        self.screen_height = screen_height
+        self.pos = (int(PicturesCoordinates[0] * self.screen_width),
+               int(PicturesCoordinates[1] * self.screen_height),
+               int(PicturesSize[0] * self.screen_width),
+               int(PicturesSize[1] * self.screen_height),
+               )
+        self.picSize = (int(PicturesSize[0] * self.screen_width),
+                   int(PicturesSize[1] * self.screen_height))
 
         self.acceptDrops()
 
@@ -15,7 +23,7 @@ class Pic(QtWidgets.QWidget):
 
         # loading image
         self.pixmap = QPixmap(path)
-        self.scaled_pixmap = self.pixmap.scaled(*size)
+        self.scaled_pixmap = self.pixmap.scaled(*self.picSize)
         # adding image to label
         self.label.setPixmap(self.scaled_pixmap)
         self.label.setGeometry(QtCore.QRect(*self.pos))

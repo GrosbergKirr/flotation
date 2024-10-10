@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5.QtGui import QPalette
+from PyQt5.QtWidgets import QWidget, QTabWidget
 
 from Tabs.full_tab_1 import *
 from Tabs.full_tab_2 import *
@@ -55,7 +56,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 
-
 if __name__ == "__main__":
     # Читаем данные
     # print("read data...")
@@ -69,3 +69,5 @@ if __name__ == "__main__":
     window = MainWindow(screen_size)
     window.showMaximized()
     sys.exit(app.exec_())
+
+
