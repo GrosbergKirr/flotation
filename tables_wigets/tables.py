@@ -24,7 +24,7 @@ class MainTableParam(QtWidgets.QWidget):
 
         self.setStyleSheet("""
                 QToolButton {
-                    color: rgb(134, 013, 200);
+                    color: rgb(134, 013, 255);
                     border: 1px solid black;
                     padding: 5px;
                     background-color: white;
@@ -44,7 +44,7 @@ class MainTableParam(QtWidgets.QWidget):
             button.setObjectName(self.buttons_names[j])
             button.setText(self.buttons_texts[j])
             button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-            button.clicked.connect(self.clk)
+            # button.clicked.connect(self.clk)
             self.table.addWidget(button, j // 3 + 1, j % 3 + 1)
             self.buttons.append(button)
 
