@@ -180,7 +180,12 @@ class Tab1:
 
     def connectionCreate(self):
         self.arrows = []
-        arrow = Arrow(QtCore.QPoint(120, 200), QtCore.QPoint(300, 375), QtCore.Qt.gray, self.tab1)
-        arrow.set_bend_points([QtCore.QPoint(200, 200), QtCore.QPoint(325, 200)])
+        start = (0.073, 0.2)
+        end = (0.822, 0.21)
+        color = QtCore.Qt.gray
+        arrow = Arrow(start, end, self.screen_width, self.screen_height, color, self.tab1)
+        bend1 = (0.073, 0.03)
+        bend2 = (0.822, 0.03)
+        arrow.set_bend_points([bend1, bend2])
         arrow.setGeometry(0, 0, self.screen_width, self.screen_height)  # Задаем размеры виджета
 
