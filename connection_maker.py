@@ -6,21 +6,19 @@ from PyQt5.QtGui import QPolygon, QBrush, QPainter, QPen
 from PyQt5.QtWidgets import QWidget
 
 
-class Arrow(QWidget):
-    def __init__(self, start_point, end_point, width, height, color, parent=None):
-        super().__init__(parent)
+class Arrow:
+    def __init__(self, start_point, end_point, width, height, color):
+        super().__init__()
         self.width = width
         self.height = height
         self.start_point = QtCore.QPoint(int(start_point[0]*self.width), int(start_point[1]*self.height))
         self.end_point = QtCore.QPoint(int(end_point[0]*self.width), int(end_point[1]*self.height))
         self.arrow_color = color
         self.path = []
+        self.name = None
 
     # Метод для смены цвета
-    def set_color(self, color):
-        """Изменить цвет стрелки."""
-        self.color = color
-        self.update()
+
 
     # Создаем метод для задавания точек изгиба
     def set_bend_points(self, points):
@@ -29,8 +27,13 @@ class Arrow(QWidget):
         for point in points:
             pointsQt.append(QtCore.QPoint(int(point[0]*self.width), int(point[1]*self.height)))
         self.path = pointsQt
-        self.update()
+        # self.update()
 
+    def set_name(self, name):
+        self.name = name
+
+    def set_color(self, color):
+        self.arrow_color = color
 
     # Рисуем наконечник стрелки
     def draw_arrow_head(self, painter, start_point, end_point):
@@ -74,20 +77,33 @@ class Arrow(QWidget):
         # Вызов функции для рисования наконечника
         self.draw_arrow_head(painter, current_point, self.end_point)
 
-    # Метод вызывающий рисование (наследуется от родителя)
+"""Создаем отдельный виджет для стрелок, чтобы не плодить виджеты под каждую стрелку"""
+class connectionWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.arrows = []
+
+    def add_arrow(self, arrow):
+        """Добавляем стрелку в список и обновляем виджет."""
+        self.arrows.append(arrow)
+        self.update()  # Обновление для перерисовки
+
     def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing)  # Включаем сглаживание
+        """Отрисовка стрелок поверх виджета."""
+        super().paintEvent(event)  # Вызов оригинальной отрисовки виджета
+        painter = QtGui.QPainter(self)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
 
-        # Настройка пера с выбранным цветом, тоньше для более "строгого" вида и поставновка карандаша на экран
-        pen = QPen(self.arrow_color, 2, Qt.SolidLine)
-        painter.setPen(pen)
-
-        # Вызываем функцию которая рисует всю стрелку целиком с изгибами и наконечником
-        self.draw(painter)
+        # Рисуем все стрелки
+        for arrow in self.arrows:
+            arrow.draw(painter)
 
 
-        # # Рисуем линию
-        # painter.drawLine(self.start_point, self.end_point)
-        # # Рисуем треугольник для стрелки на конце линии
-        # self.draw_arrow_head(painter, self.start_point, self.end_point)
+class connectionParam:
+    def __init__(self, start, end, name, bends, color):
+        self.start = start
+        self.end = end
+        self.name = name
+        self.bends = bends
+        self.color = color
+

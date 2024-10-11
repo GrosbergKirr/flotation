@@ -1,4 +1,6 @@
-from flotation.connection_maker import Arrow
+from PyQt5.QtWidgets import QWidget
+
+from flotation.connection_maker import Arrow, connectionWidget, connectionParam
 from flotation.pictures_widgets.side_pictures import *
 from flotation.tables_wigets.side_tables import *
 from flotation.tables_wigets.tables import *
@@ -48,6 +50,13 @@ class Tab1:
             self.table.setObjectName(f"table{j + 1}")
             self.mainTables.append(self.table)
 
+            """СТРОКИ СМЕНЫ ЦВЕТА СТРЕЛКИ ПО КНОПКЕ"""
+        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.arrows[0].set_color(QtGui.QColor(255, 0, 0, 128)))
+        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.update())
+        """----------------------------------------------------"""
+
+        print(self.mainTables[0].buttons[0].objectName())
+
     def sideTableCreate(self):
         '''Создаем побочные таблицы'''
         self.sideTables = []
@@ -95,6 +104,7 @@ class Tab1:
                                 f"sbt{j + 1}_5", f"sbt{j + 1}_6", f"sbt{j + 1}_7", f"sbt{j + 1}_8", f"sbt{j + 1}_9")
             pos0 = (int(i[0] * self.screen_width), int(i[1] * self.screen_height),
                     int(sideTablesSize[0] * self.screen_width), int(sideTablesSize[1] * self.screen_height))
+
             self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, numOfRows, self.tab1)
             self.table.setObjectName(f"sideTable{j + 1}")
             self.sideTables.append(self.table)
@@ -179,13 +189,35 @@ class Tab1:
 
 
     def connectionCreate(self):
-        self.arrows = []
-        start = (0.073, 0.2)
-        end = (0.822, 0.21)
-        color = QtCore.Qt.gray
-        arrow = Arrow(start, end, self.screen_width, self.screen_height, color, self.tab1)
-        bend1 = (0.073, 0.03)
-        bend2 = (0.822, 0.03)
-        arrow.set_bend_points([bend1, bend2])
-        arrow.setGeometry(0, 0, self.screen_width, self.screen_height)  # Задаем размеры виджета
+        # Создаем виджет под все стрелки
+        self.connWid = connectionWidget(self.tab1)
+        self.connWid.setGeometry(0, 0, self.screen_width, self.screen_height)
+
+        self.connParams = []
+        # Первая стрелка
+        conn1 = connectionParam((0.073, 0.2), (0.822, 0.21), "arrow_1", [(0.073, 0.03), (0.822, 0.03)], color=QtCore.Qt.gray)
+        self.connParams.append(conn1)
+        # Вторая стрелка
+        conn2 = connectionParam((0.098, 0.2), (0.652, 0.21), "arrow_2", [(0.098, 0.045), (0.652, 0.045)], color=QtCore.Qt.gray)
+        self.connParams.append(conn2)
+        conn3 = connectionParam((0.073, 0.2), (0.822, 0.21), "arrow_3", [(0.073, 0.03), (0.822, 0.03)],
+                                color=QtCore.Qt.gray)
+        self.connParams.append(conn3)
+
+        for i in self.connParams:
+            arrow = Arrow(i.start, i.end, self.screen_width, self.screen_height, i.color)
+            arrow.set_name(i.name)
+            arrow.set_bend_points(i.bends)
+            self.connWid.add_arrow(arrow)
+
+
+
+
+
+
+
+
+
+
+
 
