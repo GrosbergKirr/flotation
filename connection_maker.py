@@ -7,10 +7,12 @@ from PyQt5.QtWidgets import QWidget
 
 
 class Arrow(QWidget):
-    def __init__(self, start_point, end_point, color, parent=None):
+    def __init__(self, start_point, end_point, width, height, color, parent=None):
         super().__init__(parent)
-        self.start_point = start_point
-        self.end_point = end_point
+        self.width = width
+        self.height = height
+        self.start_point = QtCore.QPoint(int(start_point[0]*self.width), int(start_point[1]*self.height))
+        self.end_point = QtCore.QPoint(int(end_point[0]*self.width), int(end_point[1]*self.height))
         self.arrow_color = color
         self.path = []
 
@@ -23,7 +25,10 @@ class Arrow(QWidget):
     # Создаем метод для задавания точек изгиба
     def set_bend_points(self, points):
         """Устанавливаем точки изгиба для прямой."""
-        self.path = points
+        pointsQt = []
+        for point in points:
+            pointsQt.append(QtCore.QPoint(int(point[0]*self.width), int(point[1]*self.height)))
+        self.path = pointsQt
         self.update()
 
 
