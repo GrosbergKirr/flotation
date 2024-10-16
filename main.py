@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QWidget, QTabWidget
 
 from Tabs.full_tab_1 import *
 from Tabs.full_tab_2 import *
-from tables_wigets.tables import *
 from tables_wigets.side_tables import *
 
 

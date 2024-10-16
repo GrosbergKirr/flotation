@@ -1,8 +1,8 @@
-from flotation.pictures_widgets.side_pictures import Pic
-from flotation.tables_wigets.side_tables import *
-from flotation.tables_wigets.tables import *
+from pictures_widgets.side_pictures import Pic
+from tables_wigets.side_tables import *
+from tables_wigets.tables import *
 
-from flotation.tables_wigets.side_tables import SideTableParam1
+from tables_wigets.side_tables import SideTableParam1
 
 
 class Tab2:

@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import QWidget
 
-from flotation.connection_maker import Arrow, connectionWidget, connectionParam
-from flotation.pictures_widgets.side_pictures import *
-from flotation.tables_wigets.side_tables import *
-from flotation.tables_wigets.tables import *
+from connection_maker import Arrow, connectionWidget, connectionParam
+from pictures_widgets.side_pictures import *
+from tables_wigets.side_tables import *
+from tables_wigets.tables import *
 
 
 
@@ -51,7 +51,7 @@ class Tab1:
             self.mainTables.append(self.table)
 
             """СТРОКИ СМЕНЫ ЦВЕТА СТРЕЛКИ ПО КНОПКЕ"""
-        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.arrows[0].set_color(QtGui.QColor(255, 0, 0, 128)))
+        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.arrows[2].set_color(QtGui.QColor(255, 0, 0, 128)))
         self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.update())
         """----------------------------------------------------"""
 
@@ -200,7 +200,10 @@ class Tab1:
         # Вторая стрелка
         conn2 = connectionParam((0.098, 0.2), (0.652, 0.21), "arrow_2", [(0.098, 0.045), (0.652, 0.045)], color=QtCore.Qt.gray)
         self.connParams.append(conn2)
-        conn3 = connectionParam((0.073, 0.2), (0.822, 0.21), "arrow_3", [(0.073, 0.03), (0.822, 0.03)],
+        conn3 = connectionParam((0.489, 0.76), (0.736, 0.22), "arrow_3", [(0.489, 0.07), (0.736, 0.07)],
+                                color=QtCore.Qt.gray)
+        self.connParams.append(conn3)
+        conn3 = connectionParam((0.495, 0.753), (0.736, 0.22), "arrow_3", [(0.495, 0.07), (0.736, 0.07)],
                                 color=QtCore.Qt.gray)
         self.connParams.append(conn3)
 
