@@ -63,12 +63,12 @@ class Tab1:
         # Размеры основных таблиц
         sideTablesSize = (0.05, 0.12)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.60, 0.30),
-                                 (0.60, 0.47),
-                                 (0.60, 0.64),
-                                 (0.77, 0.30),
-                                 (0.77, 0.47),
-                                 (0.77, 0.64),
+        sideTablesCoordinates = ((0.625, 0.30),
+                                 (0.625, 0.47),
+                                 (0.625, 0.64),
+                                 (0.795, 0.30),
+                                 (0.795, 0.47),
+                                 (0.795, 0.64),
                                  )
 
         # j + 1 чтобы таблицы нумеровались с единицы
@@ -88,12 +88,12 @@ class Tab1:
         # Размеры основных таблиц
         sideTablesSize = (0.05, 0.12)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.67, 0.30),
-                                 (0.67, 0.47),
-                                 (0.67, 0.64),
-                                 (0.84, 0.30),
-                                 (0.84, 0.47),
-                                 (0.84, 0.64),
+        sideTablesCoordinates = ((0.70, 0.30),
+                                 (0.70, 0.47),
+                                 (0.70, 0.64),
+                                 (0.87, 0.30),
+                                 (0.87, 0.47),
+                                 (0.87, 0.64),
                                  )
         numOfRows = 5
         # j + 1 чтобы таблицы нумеровались с единицы
@@ -119,7 +119,7 @@ class Tab1:
         sideTablesCoordinates = ((0.68, 0.12),
                                  (0.75, 0.12),
                                  (0.29, 0.32),
-                                 (0.50, 0.37),
+                                 (0.50, 0.32),
                                  )
         numOfRows = 3
         # j + 1 чтобы таблицы нумеровались с единицы
@@ -141,7 +141,7 @@ class Tab1:
         self.pic1 = Pic(picPath1, PicturesCoordinates1, PicturesSize1,
                        self.screen_width, self.screen_height, self.tab1)
 
-        PicturesCoordinates1_1 = (0.80, 0.20)
+        PicturesCoordinates1_1 = (0.798, 0.20)
         PicturesSize1_1 = (0.05, 0.07)
         self.pic1_1 = Pic(picPath1, PicturesCoordinates1_1, PicturesSize1_1,
                        self.screen_width, self.screen_height, self.tab1)
@@ -153,7 +153,7 @@ class Tab1:
                        self.screen_width, self.screen_height, self.tab1)
 
         picPath3 = r"data/pic3.png"
-        PicturesCoordinates3 = (0.5, 0.5)
+        PicturesCoordinates3 = (0.52, 0.49)
         PicturesSize3 = (0.045, 0.067)
         self.pic3 = Pic(picPath3, PicturesCoordinates3, PicturesSize3,
                        self.screen_width, self.screen_height, self.tab1)
@@ -187,28 +187,61 @@ class Tab1:
         self.pic7 = Pic(picPath7, PicturesCoordinates7, PicturesSize7,
                         self.screen_width, self.screen_height, self.tab1)
 
-
     def connectionCreate(self):
         # Создаем виджет под все стрелки
         self.connWid = connectionWidget(self.tab1)
         self.connWid.setGeometry(0, 0, self.screen_width, self.screen_height)
 
         self.connParams = []
-        # Первая стрелка
-        conn1 = connectionParam((0.073, 0.2), (0.822, 0.21), "arrow_1", [(0.073, 0.03), (0.822, 0.03)], color=QtCore.Qt.gray)
-        self.connParams.append(conn1)
-        # Вторая стрелка
-        conn2 = connectionParam((0.098, 0.2), (0.652, 0.21), "arrow_2", [(0.098, 0.045), (0.652, 0.045)], color=QtCore.Qt.gray)
-        self.connParams.append(conn2)
-        conn3 = connectionParam((0.489, 0.76), (0.736, 0.22), "arrow_3", [(0.489, 0.07), (0.736, 0.07)],
-                                color=QtCore.Qt.gray)
-        self.connParams.append(conn3)
-        conn3 = connectionParam((0.495, 0.753), (0.736, 0.22), "arrow_3", [(0.495, 0.07), (0.736, 0.07)],
-                                color=QtCore.Qt.gray)
-        self.connParams.append(conn3)
 
+        # Список параметров для стрелок (начало, конец, имя, изгибы, цвет, наличие стрелки)
+        arrows_data = [
+            ((0.073, 0.2), (0.822, 0.21), "arrow_1", [(0.073, 0.03), (0.822, 0.03)], QtCore.Qt.gray, True),
+            ((0.098, 0.2), (0.652, 0.21), "arrow_2", [(0.098, 0.045), (0.652, 0.045)], QtCore.Qt.gray, True),
+            ((0.489, 0.76), (0.736, 0.09), "arrow_3", [(0.489, 0.07), (0.736, 0.07)], QtCore.Qt.gray, False),
+            ((0.495, 0.753), (0.736, 0.09), "arrow_4", [(0.495, 0.09)], QtCore.Qt.gray, False),
+            ((0.736, 0.09), (0.736, 0.22), "arrow_5", [], QtCore.Qt.gray, True),
+            ((0.722, 0.245), (0.671, 0.245), "arrow_6", [], QtCore.Qt.gray, True),
+            ((0.75, 0.245), (0.803, 0.245), "arrow_7", [], QtCore.Qt.gray, True),
+            ((0.651, 0.265), (0.651, 0.30), "arrow_8", [], QtCore.Qt.gray, True),
+            ((0.8205, 0.265), (0.8205, 0.30), "arrow_9", [], QtCore.Qt.gray, True),
+            # Блок стрелок между 1 и 2 побочными таблицами (по вертикали)
+            ((0.63, 0.33), (0.61, 0.39), "arrow_10", [(0.61, 0.33)], QtCore.Qt.gray, False),
+            ((0.63, 0.39), (0.61, 0.39), "arrow_11", [], QtCore.Qt.gray, False),
+            ((0.61, 0.39), (0.61, 0.44), "arrow_12", [], QtCore.Qt.gray, False),
+            ((0.61, 0.44), (0.61, 0.50), "arrow_13", [], QtCore.Qt.gray, False),
+            ((0.61, 0.50), (0.63, 0.50), "arrow_14", [], QtCore.Qt.gray, False),
+            ((0.61, 0.50), (0.63, 0.555), "arrow_15", [(0.61, 0.555)], QtCore.Qt.gray, False),
+            ########
+            ((0.651, 0.41), (0.651, 0.47), "arrow_16", [], QtCore.Qt.gray),
+            ((0.8205, 0.41), (0.8205, 0.47), "arrow_17", [], QtCore.Qt.gray),
+            ((0.61, 0.44), (0.8205, 0.44), "arrow_18", [], QtCore.Qt.gray, False),
+            ((0.61, 0.44), (0.55, 0.49), "arrow_19", [(0.55, 0.44)], QtCore.Qt.gray, False),
+            # Блок стрелок между 4 и 5 побочными таблицами (по вертикали)
+            ((0.80, 0.33), (0.78, 0.39), "arrow_20", [(0.78, 0.33)], QtCore.Qt.gray, False),
+            ((0.80, 0.39), (0.78, 0.39), "arrow_21", [], QtCore.Qt.gray, False),
+            ((0.78, 0.39), (0.78, 0.44), "arrow_22", [], QtCore.Qt.gray, False),
+            ((0.78, 0.44), (0.78, 0.50), "arrow_23", [], QtCore.Qt.gray, False),
+            ((0.78, 0.50), (0.80, 0.50), "arrow_24", [], QtCore.Qt.gray, False),
+            ((0.78, 0.50), (0.80, 0.555), "arrow_25", [(0.78, 0.555)], QtCore.Qt.gray, False),
+            ########
+            ((0.651, 0.59), (0.651, 0.64), "arrow_26", [], QtCore.Qt.gray),
+            ((0.8205, 0.59), (0.8205, 0.64), "arrow_27", [], QtCore.Qt.gray),
+
+        ]
+
+        # Добавляем все стрелки в список connParams
+        for data in arrows_data:
+            # Если head не указан в data, устанавливаем его в True по умолчанию
+            if len(data) == 5:
+                data = (*data, True)
+            start, end, name, bends, color, head = data
+            conn = connectionParam(start, end, name, bends, color, head)
+            self.connParams.append(conn)
+
+        # Создаем и добавляем стрелки в виджет
         for i in self.connParams:
-            arrow = Arrow(i.start, i.end, self.screen_width, self.screen_height, i.color)
+            arrow = Arrow(i.start, i.end, self.screen_width, self.screen_height, i.color, i.head)
             arrow.set_name(i.name)
             arrow.set_bend_points(i.bends)
             self.connWid.add_arrow(arrow)

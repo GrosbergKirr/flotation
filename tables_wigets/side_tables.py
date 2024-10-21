@@ -18,6 +18,24 @@ class SideTableParam1(QtWidgets.QWidget):
         self.table.setContentsMargins(0, 0, 0, 0)
         self.table.setSpacing(0)
         self.table.setObjectName(f"table2_{self.tableNum}")
+        self.setStyleSheet("""
+                    QPushButton {
+                        color: rgb(134, 013, 255);
+                        border: 1px solid black;
+                        padding: 5px;
+                        background-color: white;
+                    }
+                    QPushButton:hover {
+                        background-color: lightgray;
+                    }
+                    QPushButton:pressed {
+                        background-color: darkgray;
+                    }
+                    QLabel {
+                        border: 1px solid black;
+                        padding: 5px;
+                    }
+                """)
 
         # Добавляем кнопки и лейблы в лэйаут
         # TODO: переделать на мапу
@@ -55,16 +73,34 @@ class SideTableParam2(QtWidgets.QWidget):
     def init_ui(self):
         # Создаем виджет
         self.setGeometry(QtCore.QRect(*self.pos))
-        # self.setObjectName(f"gridLayoutWidget_2")
+
         # Создаем лэйаут
         self.table = QtWidgets.QGridLayout(self)
-        # self.table.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
         self.table.setContentsMargins(0, 0, 0, 0)
         self.table.setSpacing(0)
         self.table.setObjectName(f"table2_{self.tableNum}")
 
-        # Добавляем кнопки и лейблы в лэйаут
-        # TODO: переделать на мапу
+        # Настраиваем стили
+        self.setStyleSheet("""
+                            QPushButton {
+                                color: rgb(134, 013, 255);
+                                border: 1px solid black;
+                                padding: 5px;
+                                background-color: white;
+                            }
+                            QPushButton:hover {
+                                background-color: lightgray;
+                            }
+                            QPushButton:pressed {
+                                background-color: darkgray;
+                            }
+                            QLabel {
+                                border: 1px solid black;
+                                padding: 5px;
+                            }
+                        """)
+
+        # Настраиваем кнопки в лэйауте
         self.buttons = []
         for i in range(self.numOfRows):
             button = QtWidgets.QPushButton(self)
@@ -75,13 +111,19 @@ class SideTableParam2(QtWidgets.QWidget):
             self.buttons.append(button)
 
         # Добавляем лейблы
-        labelName = "ДМВК,\nт/ч"
         for i in range(self.numOfRows):
             label = QtWidgets.QLabel(self)
             label.setObjectName(f"label{i + 1}")
-            label.setText(labelName)
+            label.setText(f"{200 + i}")
             label.setStyleSheet("font-size: 10px;")
             label.setAlignment(QtCore.Qt.AlignCenter)
             label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-            self.table.addWidget(label, i, 2, 1, 1)
+            self.table.addWidget(label, i, 0, 1, 1)
+
+        # Устанавливаем растяжение для колонок
+        self.table.setColumnStretch(0, 1)  # Узкая левая колонка
+        self.table.setColumnStretch(1, 4)  # Широкая правая колонка
+
         QtCore.QMetaObject.connectSlotsByName(self)
+
+

@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QWidget
 
 
 class Arrow:
-    def __init__(self, start_point, end_point, width, height, color):
+    def __init__(self, start_point, end_point, width, height, color, head=True):
         super().__init__()
         self.width = width
         self.height = height
@@ -16,6 +16,7 @@ class Arrow:
         self.arrow_color = color
         self.path = []
         self.name = None
+        self.head = head
 
     # Метод для смены цвета
 
@@ -74,8 +75,9 @@ class Arrow:
 
         painter.drawLine(current_point, self.end_point)
 
-        # Вызов функции для рисования наконечника
-        self.draw_arrow_head(painter, current_point, self.end_point)
+        # Вызов функции для рисования наконечника (в зависимости от флага)
+        if self.head:
+            self.draw_arrow_head(painter, current_point, self.end_point)
 
 """Создаем отдельный виджет для стрелок, чтобы не плодить виджеты под каждую стрелку"""
 class connectionWidget(QWidget):
@@ -100,10 +102,11 @@ class connectionWidget(QWidget):
 
 
 class connectionParam:
-    def __init__(self, start, end, name, bends, color):
+    def __init__(self, start, end, name, bends, color, head=True):
         self.start = start
         self.end = end
         self.name = name
         self.bends = bends
         self.color = color
+        self.head = head
 
