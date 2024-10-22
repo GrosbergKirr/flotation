@@ -1,5 +1,3 @@
-from PyQt5.QtWidgets import QWidget
-
 from connection_maker import Arrow, connectionWidget, connectionParam
 from pictures_widgets.side_pictures import *
 from tables_wigets.side_tables import *
@@ -18,6 +16,8 @@ class Tab1:
         self.mainTableCreate()
         self.sideTableCreate()
         self.miniTableCreate()
+
+
 
 
 
@@ -51,11 +51,10 @@ class Tab1:
             self.mainTables.append(self.table)
 
             """СТРОКИ СМЕНЫ ЦВЕТА СТРЕЛКИ ПО КНОПКЕ"""
-        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.arrows[2].set_color(QtGui.QColor(255, 0, 0, 128)))
+        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.arrows[2].set_color(QtGui.QColor(255, 0, 0)))
         self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.update())
         """----------------------------------------------------"""
 
-        print(self.mainTables[0].buttons[0].objectName())
 
     def sideTableCreate(self):
         '''Создаем побочные таблицы'''
@@ -196,6 +195,7 @@ class Tab1:
 
         # Список параметров для стрелок (начало, конец, имя, изгибы, цвет, наличие стрелки)
         arrows_data = [
+            ((0.085, 0.30), (0.085, 0.26), "arrow_0", [], QtCore.Qt.gray, True),
             ((0.073, 0.2), (0.822, 0.21), "arrow_1", [(0.073, 0.03), (0.822, 0.03)], QtCore.Qt.gray, True),
             ((0.098, 0.2), (0.652, 0.21), "arrow_2", [(0.098, 0.045), (0.652, 0.045)], QtCore.Qt.gray, True),
             ((0.489, 0.76), (0.736, 0.09), "arrow_3", [(0.489, 0.07), (0.736, 0.07)], QtCore.Qt.gray, False),
@@ -216,7 +216,7 @@ class Tab1:
             ((0.651, 0.41), (0.651, 0.47), "arrow_16", [], QtCore.Qt.gray),
             ((0.8205, 0.41), (0.8205, 0.47), "arrow_17", [], QtCore.Qt.gray),
             ((0.61, 0.44), (0.8205, 0.44), "arrow_18", [], QtCore.Qt.gray, False),
-            ((0.61, 0.44), (0.55, 0.49), "arrow_19", [(0.55, 0.44)], QtCore.Qt.gray, False),
+            ((0.61, 0.44), (0.56, 0.49), "arrow_19", [(0.56, 0.44)], QtCore.Qt.gray),
             # Блок стрелок между 4 и 5 побочными таблицами (по вертикали)
             ((0.80, 0.33), (0.78, 0.39), "arrow_20", [(0.78, 0.33)], QtCore.Qt.gray, False),
             ((0.80, 0.39), (0.78, 0.39), "arrow_21", [], QtCore.Qt.gray, False),
@@ -227,6 +227,18 @@ class Tab1:
             ########
             ((0.651, 0.59), (0.651, 0.64), "arrow_26", [], QtCore.Qt.gray),
             ((0.8205, 0.59), (0.8205, 0.64), "arrow_27", [], QtCore.Qt.gray),
+            ((0.78, 0.67), (0.61, 0.64), "arrow_28", [(0.78, 0.62), (0.61, 0.62)], QtCore.Qt.gray, False),
+            ((0.61, 0.64), (0.61, 0.67), "arrow_29", [], QtCore.Qt.gray, False),
+            ((0.63, 0.67), (0.61, 0.67), "arrow_30", [], QtCore.Qt.gray, False),
+            ((0.63, 0.72), (0.61, 0.67), "arrow_31", [(0.61, 0.72)], QtCore.Qt.gray, False),
+            ((0.80, 0.67), (0.78, 0.67), "arrow_32", [], QtCore.Qt.gray, False),
+            ((0.80, 0.72), (0.78, 0.67), "arrow_33", [(0.78, 0.72 )], QtCore.Qt.gray, False),
+            ((0.61, 0.64), (0.55, 0.72), "arrow_34", [(0.55, 0.64)], QtCore.Qt.gray),
+            ((0.31, 0.61), (0.54, 0.72), "arrow_35", [(0.31, 0.66), (0.54, 0.66)], QtCore.Qt.gray),
+            ((0.541, 0.511), (0.531, 0.47), "arrow_36", [(0.541, 0.47)], QtCore.Qt.gray, False),
+            ((0.531, 0.516), (0.531, 0.47), "arrow_37", [], QtCore.Qt.gray, False),
+            ((0.531, 0.47), (0.31, 0.54), "arrow_38", [(0.45,0.47), (0.45, 0.45), (0.31, 0.45)], QtCore.Qt.gray),
+            ((0.27, 0.56), (0.20, 0.74), "arrow_35", [(0.18, 0.56), (0.18, 0.74)], QtCore.Qt.gray),
 
         ]
 
@@ -245,6 +257,8 @@ class Tab1:
             arrow.set_name(i.name)
             arrow.set_bend_points(i.bends)
             self.connWid.add_arrow(arrow)
+
+
 
 
 

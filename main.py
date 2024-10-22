@@ -54,13 +54,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 
-
 if __name__ == "__main__":
     # Читаем данные
     # print("read data...")
     # df = load_df('short_df.xlsx')
     # print("read data success!")
-    # # Запускаем приложение и берем разрешение экрана
+    # Запускаем приложение и берем разрешение экрана
     app = QtWidgets.QApplication(sys.argv)
     screen = app.primaryScreen()
     screen_size = screen.size()
@@ -68,5 +67,6 @@ if __name__ == "__main__":
     window = MainWindow(screen_size)
     window.showMaximized()
     sys.exit(app.exec_())
+
 
 

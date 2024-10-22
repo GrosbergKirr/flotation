@@ -66,7 +66,7 @@ class Arrow:
     """Отрисовываем стрелку."""
     def draw(self, painter):
 
-        painter.setPen(QtGui.QPen(self.arrow_color, 2))
+        painter.setPen(QtGui.QPen(self.arrow_color, 3))
 
         current_point = self.start_point
         for point in self.path:
