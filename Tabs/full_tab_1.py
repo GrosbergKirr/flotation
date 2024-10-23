@@ -1,8 +1,9 @@
-from connection_maker import Arrow, connectionWidget, connectionParam
-from pictures_widgets.side_pictures import *
-from tables_wigets.side_tables import *
-from tables_wigets.tables import *
+from PyQt5 import QtGui, QtCore
 
+from wigets.connections.connection_maker import connectionWidget, connectionParam, Arrow
+from wigets.pictures_widgets.side_pictures import Pic
+from wigets.tables.side_tables import SideTableParam1, SideTableParam2
+from wigets.tables.tables import MainTableParam
 
 
 class Tab1:
@@ -134,7 +135,7 @@ class Tab1:
             self.sideTables.append(self.table)
 
     def picturesCreate(self):
-        picPath1 = r"data/pic1.png"
+        picPath1 = r"pictures/pic1.png"
         PicturesCoordinates1 = (0.63, 0.20)
         PicturesSize1 = (0.05, 0.07)
         self.pic1 = Pic(picPath1, PicturesCoordinates1, PicturesSize1,
@@ -145,25 +146,25 @@ class Tab1:
         self.pic1_1 = Pic(picPath1, PicturesCoordinates1_1, PicturesSize1_1,
                        self.screen_width, self.screen_height, self.tab1)
 
-        picPath2 = r"data/pic2.png"
+        picPath2 = r"pictures/pic2.png"
         PicturesCoordinates2 = (0.72, 0.21)
         PicturesSize2 = (0.04, 0.06)
         self.pic2 = Pic(picPath2, PicturesCoordinates2, PicturesSize2,
                        self.screen_width, self.screen_height, self.tab1)
 
-        picPath3 = r"data/pic3.png"
+        picPath3 = r"pictures/pic3.png"
         PicturesCoordinates3 = (0.52, 0.49)
         PicturesSize3 = (0.045, 0.067)
         self.pic3 = Pic(picPath3, PicturesCoordinates3, PicturesSize3,
                        self.screen_width, self.screen_height, self.tab1)
 
-        picPath4 = r"data/pic4.png"
+        picPath4 = r"pictures/pic4.png"
         PicturesCoordinates4 = (0.515, 0.72)
         PicturesSize4 = (0.045, 0.067)
         self.pic4 = Pic(picPath4, PicturesCoordinates4, PicturesSize4,
                        self.screen_width, self.screen_height, self.tab1)
 
-        picPath5 = r"data/pic5.png"
+        picPath5 = r"pictures/pic5.png"
         PicturesCoordinates5 = (0.485, 0.75)
         PicturesSize5 = (0.02, 0.03)
         self.pic5 = Pic(picPath5, PicturesCoordinates5, PicturesSize5,
@@ -174,13 +175,13 @@ class Tab1:
         self.pic5_1 = Pic(picPath5, PicturesCoordinates5_1, PicturesSize5_1,
                         self.screen_width, self.screen_height, self.tab1)
 
-        picPath6 = r"data/pic6.png"
+        picPath6 = r"pictures/pic6.png"
         PicturesCoordinates6 = (0.06, 0.18)
         PicturesSize6 = (0.05, 0.08)
         self.pic6 = Pic(picPath6, PicturesCoordinates6, PicturesSize6,
                         self.screen_width, self.screen_height, self.tab1)
 
-        picPath7 = r"data/pic7.png"
+        picPath7 = r"pictures/pic7.png"
         PicturesCoordinates7 = (0.27, 0.50)
         PicturesSize7 = (0.08, 0.11)
         self.pic7 = Pic(picPath7, PicturesCoordinates7, PicturesSize7,
