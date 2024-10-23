@@ -1,8 +1,8 @@
-from pictures_widgets.side_pictures import Pic
-from tables_wigets.side_tables import *
-from tables_wigets.tables import *
+from wigets.pictures_widgets.side_pictures import Pic
+from wigets.tables.side_tables import *
+from wigets.tables.tables import *
 
-from tables_wigets.side_tables import SideTableParam1
+from wigets.tables.side_tables import SideTableParam1
 
 
 class Tab2:
@@ -21,7 +21,7 @@ class Tab2:
         '''Создаем основные таблицы!!'''
         self.mainTables = []
         # Размеры основных таблиц
-        mainTablesSize = (0.13, 0.11)
+        mainTablesSize = (0.11, 0.09)
         # Относительные (относительно экрана) координаты основных таблиц
         tablesCoordinates = ((0.01, 0.3),
                              (0.13, 0.08),
@@ -47,11 +47,11 @@ class Tab2:
 
     def sideTableCreate(self):
         '''Создаем побочные таблицы'''
-        self.sideTables = []
+        self.sideTables1 = []
         # Размеры основных таблиц
         sideTablesSize = (0.07, 0.14)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.32, 0.31),
+        sideTablesCoordinates1 = ((0.32, 0.31),
                                  (0.32, 0.48),
                                  (0.32, 0.65),
                                  (0.52, 0.31),
@@ -60,7 +60,7 @@ class Tab2:
                                  )
 
         # j + 1 чтобы таблицы нумеровались с единицы
-        for j, i in enumerate(sideTablesCoordinates):
+        for j, i in enumerate(sideTablesCoordinates1):
             sideButtonsNames = (f"sbt{j + 1}_1", f"sbt{j + 1}_2", f"sbt{j + 1}_3", f"sbt{j + 1}_4",
                                 f"sbt{j + 1}_5", f"sbt{j + 1}_6", f"sbt{j + 1}_7", f"sbt{j + 1}_8", f"sbt{j + 1}_9")
             sideButtonsTexts = (f"sbt{j + 1}_1", f"sbt{j + 1}_2", f"sbt{j + 1}_3", f"sbt{j + 1}_4",
@@ -69,14 +69,14 @@ class Tab2:
                     int(sideTablesSize[0] * self.screen_width), int(sideTablesSize[1] * self.screen_height))
             self.table = SideTableParam1(sideButtonsNames, sideButtonsTexts, pos0, j + 1, self.tab1)
             self.table.setObjectName(f"sideTable{j + 1}")
-            self.sideTables.append(self.table)
+            self.sideTables1.append(self.table)
 
         '''Создаем побочные таблицы'''
-        self.sideTables = []
+        self.sideTables2 = []
         # Размеры основных таблиц
         sideTablesSize = (0.07, 0.14)
         # Относительные (относительно экрана) координаты побочных таблиц
-        sideTablesCoordinates = ((0.40, 0.31),
+        sideTablesCoordinates2 = ((0.40, 0.31),
                                  (0.40, 0.48),
                                  (0.40, 0.65),
                                  (0.60, 0.31),
@@ -85,7 +85,7 @@ class Tab2:
                                  )
         numOfRows = 5
         # j + 1 чтобы таблицы нумеровались с единицы
-        for j, i in enumerate(sideTablesCoordinates):
+        for j, i in enumerate(sideTablesCoordinates2):
             sideButtonsNames = (f"sbt{j + 1}_1", f"sbt{j + 1}_2", f"sbt{j + 1}_3", f"sbt{j + 1}_4",
                                 f"sbt{j + 1}_5", f"sbt{j + 1}_6", f"sbt{j + 1}_7", f"sbt{j + 1}_8", f"sbt{j + 1}_9")
             sideButtonsTexts = (f"sbt{j + 1}_1", f"sbt{j + 1}_2", f"sbt{j + 1}_3", f"sbt{j + 1}_4",
@@ -94,7 +94,7 @@ class Tab2:
                     int(sideTablesSize[0] * self.screen_width), int(sideTablesSize[1] * self.screen_height))
             self.table = SideTableParam2(sideButtonsNames, sideButtonsTexts, pos0, j + 1, numOfRows, self.tab1)
             self.table.setObjectName(f"sideTable{j + 1}")
-            self.sideTables.append(self.table)
+            self.sideTables2.append(self.table)
 
     def picturesCreate(self):
         picPath1 = r"C:\Users\grosy\OneDrive\Pictures\power.png"

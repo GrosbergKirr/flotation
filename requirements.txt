@@ -5,3 +5,8 @@ scipy
 plotly
 PyQtWebEngine
 openpyxl
+psycopg
+psycopg-binary
+sqlalchemy
+pyyaml
+loguru

@@ -1,33 +1,32 @@
+import configparser
+import os
 import sys
 
-from PyQt5.QtGui import QPalette
+import configuration
 from PyQt5.QtWidgets import QWidget, QTabWidget
 
 from Tabs.full_tab_1 import *
 from Tabs.full_tab_2 import *
-from tables_wigets.side_tables import *
+from Tabs.full_tab_3 import Tab3
+from configuration.logger import SetLogger
+from data_worker.load_and_process import load_df
+from wigets.tables.side_tables import *
+from configuration.config import LoadConfig
+from storage.connector import *
+
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, screen_size):
+    def __init__(self, screenSize):
         super().__init__()
         self.setWindowTitle("MainWindow")
-
-        # Настройка основного виджета и размера экрана
-        self.screen_width = screen_size.width()
-        self.screen_height = screen_size.height()
+        self.screen_width = screenSize.width()
+        self.screen_height = screenSize.height()
         self.resize(self.screen_width, self.screen_height)
 
-
-        # Создаем QTabWidget для вкладок
         self.tabs = QTabWidget()
-
-        '''Первая вкладка'''
-        # Виджет для вкладки
         self.tab1 = QWidget()
-        # Добавляем виджет вкладки в общий виджет вкладок
         self.tabs.addTab(self.tab1, "Вкладка 1")
-        # Все наполнение вкладки в классе Tab1
         Tab1(self.screen_width, self.screen_height, self.tab1)
 
         self.tab2 = QWidget()
@@ -36,37 +35,25 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.tab3 = QWidget()
         self.tabs.addTab(self.tab3, "Вкладка 3")
-
-
-
+        Tab3(self.screen_width, self.screen_height, self.tab3)
 
         self.setCentralWidget(self.tabs)
 
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor("#FAFEF8"))
-        self.setPalette(palette)
-
-        # self.mainTableCreate()
-        # self.sideTableCreate()
-        # self.picturesCreate()
-
-
-
-
-
 if __name__ == "__main__":
-    # Читаем данные
-    # print("read data...")
-    # df = load_df('short_df.xlsx')
-    # print("read data success!")
-    # Запускаем приложение и берем разрешение экрана
+    cfg = LoadConfig("config.yml")
+    log = SetLogger(cfg.service)
+    log.info("Set logger and config successful")
+    engine = connectToDb(cfg.database, log)
+    data = fetch_all_to_dataframe(engine, "data", log)
+    if data is not None:
+        log.info("get data from db successful")
+        log.debug(f"Top of DataFrame:\n{data.head()}")
+    else:
+        log.warning("no data fetched")
+        os.exit(1)
     app = QtWidgets.QApplication(sys.argv)
     screen = app.primaryScreen()
     screen_size = screen.size()
-    # открываем главное окно
     window = MainWindow(screen_size)
     window.showMaximized()
     sys.exit(app.exec_())
-
-
-
