@@ -7,13 +7,14 @@ from PyQt5.QtWidgets import QWidget
 
 
 class Arrow:
-    def __init__(self, start_point, end_point, width, height, color, head=True):
+    def __init__(self, start_point, end_point, width, height, color, sickness, head=True):
         super().__init__()
         self.width = width
         self.height = height
         self.start_point = QtCore.QPoint(int(start_point[0]*self.width), int(start_point[1]*self.height))
         self.end_point = QtCore.QPoint(int(end_point[0]*self.width), int(end_point[1]*self.height))
         self.arrow_color = color
+        self.sickness = sickness
         self.path = []
         self.name = None
         self.head = head
@@ -66,7 +67,7 @@ class Arrow:
     """Отрисовываем стрелку."""
     def draw(self, painter):
 
-        painter.setPen(QtGui.QPen(self.arrow_color, 3))
+        painter.setPen(QtGui.QPen(self.arrow_color, self.sickness))
 
         current_point = self.start_point
         for point in self.path:
@@ -102,11 +103,12 @@ class connectionWidget(QWidget):
 
 
 class connectionParam:
-    def __init__(self, start, end, name, bends, color, head=True):
+    def __init__(self, start, end, name, bends, color, sickness, head=True):
         self.start = start
         self.end = end
         self.name = name
         self.bends = bends
         self.color = color
+        self.sickness = sickness
         self.head = head
 
