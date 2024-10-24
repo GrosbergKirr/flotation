@@ -101,6 +101,13 @@ class connectionWidget(QWidget):
         for arrow in self.arrows:
             arrow.draw(painter)
 
+    def color_arrows(self, indices, color):
+        """Окрашиваем стрелки по переданным номерам в указанный цвет."""
+        for index in indices:
+            if 0 <= index < len(self.arrows):
+                self.arrows[index].set_color(color)
+        self.update()  # Обновляем виджет для перерисовки
+
 
 class connectionParam:
     def __init__(self, start, end, name, bends, color, sickness, head=True):
