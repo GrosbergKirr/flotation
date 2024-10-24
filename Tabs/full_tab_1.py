@@ -52,8 +52,8 @@ class Tab1:
             self.mainTables.append(self.table)
 
             """СТРОКИ СМЕНЫ ЦВЕТА СТРЕЛКИ ПО КНОПКЕ"""
-        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.arrows[2].set_color(QtGui.QColor(255, 0, 0)))
-        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.update())
+        self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.color_arrows([1,2,3,4, 5], QtGui.QColor(255, 0, 0)))
+        # self.mainTables[0].buttons[0].clicked.connect(lambda: self.connWid.update())
         """----------------------------------------------------"""
 
 
