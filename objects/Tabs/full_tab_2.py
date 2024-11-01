@@ -1,8 +1,8 @@
-from wigets.pictures_widgets.side_pictures import Pic
-from wigets.tables.side_tables import *
-from wigets.tables.tables import *
+from objects.wigets.pictures_widgets.side_pictures import Pic
+from objects.wigets.tables.side_tables import *
+from objects.wigets.tables.tables import *
 
-from wigets.tables.side_tables import SideTableParam1
+from objects.wigets.tables.side_tables import SideTableParam1
 
 
 class Tab2:
@@ -49,7 +49,7 @@ class Tab2:
         '''Создаем побочные таблицы'''
         self.sideTables1 = []
         # Размеры основных таблиц
-        sideTablesSize = (0.07, 0.14)
+        sideTablesSize = (0.05, 0.12)
         # Относительные (относительно экрана) координаты побочных таблиц
         sideTablesCoordinates1 = ((0.32, 0.31),
                                  (0.32, 0.48),
@@ -74,7 +74,7 @@ class Tab2:
         '''Создаем побочные таблицы'''
         self.sideTables2 = []
         # Размеры основных таблиц
-        sideTablesSize = (0.07, 0.14)
+        sideTablesSize = (0.05, 0.12)
         # Относительные (относительно экрана) координаты побочных таблиц
         sideTablesCoordinates2 = ((0.40, 0.31),
                                  (0.40, 0.48),
