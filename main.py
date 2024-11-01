@@ -1,17 +1,15 @@
-import configparser
 import os
 import sys
 
-import configuration
 from PyQt5.QtWidgets import QWidget, QTabWidget
 
-from Tabs.full_tab_1 import *
-from Tabs.full_tab_2 import *
-from Tabs.full_tab_3 import Tab3
+from objects.Tabs.full_tab_1 import *
+from objects.Tabs.full_tab_2 import *
+from objects.Tabs.full_tab_3 import *
 from configuration.logger import SetLogger
-from data_worker.load_and_process import load_df
-from wigets.tables.side_tables import *
+from objects.wigets.tables.side_tables import *
 from configuration.config import LoadConfig
+from service.load_and_update import LoadAndUpdateService
 from storage.connector import *
 
 
@@ -39,6 +37,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.setCentralWidget(self.tabs)
 
+        # LoadAndUpdateService(Tab1, )
+
 if __name__ == "__main__":
     cfg = LoadConfig("config.yml")
     log = SetLogger(cfg.service)
@@ -51,6 +51,7 @@ if __name__ == "__main__":
     else:
         log.warning("no data fetched")
         os.exit(1)
+
     app = QtWidgets.QApplication(sys.argv)
     screen = app.primaryScreen()
     screen_size = screen.size()

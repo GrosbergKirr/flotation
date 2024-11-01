@@ -1,4 +1,4 @@
-from wigets.tables.tables import MainTableParam
+from objects.wigets.tables.tables import MainTableParam
 
 
 class Tab3:
