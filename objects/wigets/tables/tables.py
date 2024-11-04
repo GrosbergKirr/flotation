@@ -24,7 +24,7 @@ class MainTableParam(QtWidgets.QWidget):
 
         self.setStyleSheet("""
             QToolButton {
-                color: rgb(134, 013, 255);
+                color: rgb(200, 013, 100);
                 border: 1px solid black;
                 padding: 5px;
                 background-color: white;
