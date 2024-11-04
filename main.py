@@ -40,17 +40,17 @@ class MainWindow(QtWidgets.QMainWindow):
         # LoadAndUpdateService(Tab1, )
 
 if __name__ == "__main__":
-    # cfg = LoadConfig("config.yml")
-    # log = SetLogger(cfg.service)
-    # log.info("Set logger and config successful")
-    # engine = connectToDb(cfg.database, log)
-    # data = fetch_all_to_dataframe(engine, "data", log)
-    # if data is not None:
-    #     log.info("get data from db successful")
-    #     log.debug(f"Top of DataFrame:\n{data.head()}")
-    # else:
-    #     log.warning("no data fetched")
-    #     os.exit(1)
+    cfg = LoadConfig("config.yml")
+    log = SetLogger(cfg.service)
+    log.info("Set logger and config successful")
+    engine = connectToDb(cfg.database, log)
+    data = fetch_all_to_dataframe(engine, "data", log)
+    if data is not None:
+        log.info("get data from db successful")
+        log.debug(f"Top of DataFrame:\n{data.head()}")
+    else:
+        log.warning("no data fetched")
+        os.exit(1)
 
     app = QtWidgets.QApplication(sys.argv)
     screen = app.primaryScreen()
