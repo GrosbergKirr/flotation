@@ -8,7 +8,6 @@ from PyQt5.QtWidgets import QWidget
 
 class Arrow:
     def __init__(self, start_point, end_point, width, height, color, sickness, head=True):
-        super().__init__()
         self.width = width
         self.height = height
         self.start_point = QtCore.QPoint(int(start_point[0]*self.width), int(start_point[1]*self.height))
@@ -19,7 +18,7 @@ class Arrow:
         self.name = None
         self.head = head
 
-    # Метод для смены цвета
+
 
 
     # Создаем метод для задавания точек изгиба
@@ -34,6 +33,7 @@ class Arrow:
     def set_name(self, name):
         self.name = name
 
+    # Метод для смены цвета
     def set_color(self, color):
         self.arrow_color = color
 
