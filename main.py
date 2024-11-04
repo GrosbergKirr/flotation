@@ -53,6 +53,7 @@ if __name__ == "__main__":
     #     os.exit(1)
 
     app = QtWidgets.QApplication(sys.argv)
+    app.setAttribute(Qt.AA_EnableHighDpiScaling, False)
     screen = app.primaryScreen()
     screen_size = screen.size()
     window = MainWindow(screen_size)
